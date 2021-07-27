@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class App {
++ main()
++ start()
+}
+
+class ToDoList {
+- toDoTitle : String
+- items[] : ArrayList<Item>
+
+setTitle()
+getTitle()
+addItem()
+removeItem()
+clearList()
+getTitles()
+isComplete()
+isIncomplete()
+}
+
+class Item {
+- itemStatus : boolean
+- itemDescription : String
+- itemDueDate : LocalDate
+
+getItemStatus()
+setItemStatus()
+getItemDescription()
+setItemDescription()
+getItemDueDate()
+setItemDueDate()
+fileToItem()
+}
+
+class ListManager {
+- toDoListItems : ListView<String>
+- completeItems :ListView<String>
+- showCompleteItems : RadioButton
+- itemDescription : TextField
+- itemDue : DatePicker
+- isComplete : RadioButton
+
+openButtonIsClicked(ActionEvent actionEvent)
+addButtonIsClicked(ActionEvent actionEvent)
+removeButtonIsClicked(ActionEvent actionEvent)
+clearButtonIsClicked(ActionEvent actionEvent)
+setItemStatus(ActionEvent actionEvent)
+setToDoListItems()
+resetInputs()
+editButtonIsClicked(ActionEvent actionEvent)
+saveButtonIsClicked(ActionEvent actionEvent)
+}
+
+class FileManager{
+promptSaveFile()
+promptOpenFile()
+writeToFile()
+readFromFile()
+}
+
+
+javafx.Application <|- App
+App *-- ToDoList
+ToDoList o-- Item
+ListManager - Item
+FileManager - ListManager
+
+
+@enduml
