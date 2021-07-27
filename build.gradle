@@ -12,8 +12,12 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.testng:testng:7.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation group: 'org.json', name: 'json', version: '20210307'
 }
 
 test {
@@ -25,4 +29,4 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'java.ucf.assignments.ListControllerMain'
+mainClassName = 'java.ucf.assignments.itemTODO'

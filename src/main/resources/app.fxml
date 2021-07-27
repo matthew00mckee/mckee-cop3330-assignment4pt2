@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.listController">
-    <columnConstraints>
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    </rowConstraints>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.FXMLController">
     <children>
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#viewList" text="View" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="View" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editList" text="Edit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteList" text="Delete" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <TextField editable="false" text="Homework" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <TextField editable="false" text="Groceries" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField alignment="CENTER" editable="false" text="Title" GridPane.columnIndex="1" />
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#newList" text="New" GridPane.columnIndex="3" />
-        <CheckBox alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#listSelector" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <CheckBox alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveList" text="Save" GridPane.columnIndex="4" />
-        <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="70.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.rowIndex="3" />
-        <TextField editable="false" layoutX="30.0" layoutY="73.0" text="Chores" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="70.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="View" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    </children>
-</GridPane>
+        <TableView fx:id="tableView" layoutX="-2.0" layoutY="104.0" prefHeight="294.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="title" onEditCommit="#ChangeTitleCell" prefWidth="152.79999387264252" text="Title" />
+                <TableColumn fx:id="description" onEditCommit="#ChangeDescriptionCell" prefWidth="209.5999755859375" text="Description" />
+                <TableColumn fx:id="date" onEditCommit="#ChangeDateCell" prefWidth="165.60000610351562" text="Due Date" />
+                <TableColumn fx:id="status" minWidth="4.0" onEditCommit="#ChangeStatusCell" prefWidth="71.20001220703125" text="Status" />
+            </columns>
+        </TableView>
+        <ToolBar prefHeight="40.0" prefWidth="600.0">
+            <items>
+                <Button mnemonicParsing="false" onAction="#SaveButtonClicked" text="Save" />
+                <Button mnemonicParsing="false" onAction="#LoadButtonClicked" text="Load" />
+                <MenuButton mnemonicParsing="false" text="Display">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#DisplayAllButtonClicked" text="All" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#DisplayIncompleteButtonClicked" text="Incomplete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#DisplayCompletedButtonClicked" text="Completed" />
+                    </items>
+                </MenuButton>
 
+
+                <Button mnemonicParsing="false" onAction="#RemoveItemButtonClicked" text="Remove" />
+                <Button mnemonicParsing="false" onAction="#ClearAllButtonClicked" prefHeight="25.0" prefWidth="65.0" text="Clear All" />
+            </items>
+        </ToolBar>
+        <TextField fx:id="titleTextField" layoutX="6.0" layoutY="54.0" prefHeight="26.0" prefWidth="123.0" promptText="Title" />
+        <TextField fx:id="descriptionTextField" layoutX="136.0" layoutY="53.0" prefHeight="26.0" prefWidth="158.0" promptText="Description" />
+        <Button layoutX="544.0" layoutY="53.0" mnemonicParsing="false" onAction="#AddItemButtonClicked" prefHeight="26.0" prefWidth="41.0" text="Add" />
+        <TextField fx:id="statusTextField" layoutX="486.0" layoutY="54.0" prefHeight="26.0" prefWidth="50.0" promptText="I/C" />
+        <DatePicker fx:id="dateTextField" layoutX="310.0" layoutY="55.0" prefHeight="26.0" prefWidth="158.0" promptText="Due Date" />
+    </children>
+</AnchorPane>
